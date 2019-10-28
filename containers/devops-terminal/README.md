@@ -1,4 +1,4 @@
-# PowerShell, .NET Core
+# PowerShell, Typescript, .NET Core
 
 ## Summary
 
