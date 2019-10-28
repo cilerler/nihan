@@ -1,0 +1,109 @@
+{
+	"name": "Powershell, Kubernetes & Helm, Typescript, .NET Core",
+	
+	// Update the 'image' property with your Docker image name.
+	//"image": "ubuntu:bionic",
+
+	//"dockerFile": "Dockerfile",
+
+	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
+	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
+	"dockerComposeFile": [
+		//"../docker-compose.yml",
+		"docker-compose.yml"
+	],
+
+	// The 'service' property is the name of the service for the container that VS Code should
+	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+	"service": "efe",
+
+	// The optional 'workspaceFolder' property is the path VS Code should open by default when
+	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
+	"workspaceFolder": "/workspace",
+
+	// Use 'settings' to set *default* container specific settings.json values on container create. 
+	// You can edit these settings after create using File > Preferences > Settings > Remote.
+	"settings": { 
+		// This will ignore your local shell user setting for Linux since shells like zsh are typically 
+		// not in base container images. You can also update this to an specific shell to ensure VS Code 
+		// uses the right one for terminals and tasks. For example, /bin/bash (or /bin/ash for Alpine).
+		// "terminal.integrated.shell.linux": null
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"remote.extensionKind": {
+			"ms-azuretools.vscode-docker": "workspace"
+		}
+	},
+
+	// Uncomment the next line if you want to publish any ports.
+	// "appPort": [],
+
+	// Uncomment the next line if you want start specific services in your Docker Compose config.
+	// "runServices": [],
+
+	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+	// "shutdownAction": "none",
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "dotnet restore",
+
+	// Uncomment the next line to use a non-root user. On Linux, this will prevent
+	// new files getting created as root, but you may need to update the USER_UID
+	// and USER_GID in .devcontainer/Dockerfile to match your user if not 1000.
+	// "runArgs": [ "-u", "vscode" ],
+	"runArgs": [
+		// Uncomment the next line if you will use a ptrace-based debugger like C++, Go, and Rust.
+		// "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined",
+
+		// Uncomment the next line to use a non-root user. On Linux, this will prevent
+		// new files getting created as root, but you may need to update the USER_UID
+		// and USER_GID in .devcontainer/Dockerfile to match your user if not 1000.
+		// "-u", "vscode",
+
+		"--mount", "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock",
+		"--mount", "type=bind,source=${env:HOME}${env:USERPROFILE}/.kube,target=/root/.kube-localhost",
+
+		// Uncomment the next line to also sync certs in your .minikube folder
+		// "--mount", "type=bind,source=${env:HOME}${env:USERPROFILE}/.minikube,target=/root/.minikube-localhost",
+		
+		"-e", "SYNC_LOCALHOST_KUBECONFIG=true"
+	],	
+
+	// Add the IDs of extensions you want installed when the container is created in the array below.
+	"extensions": [
+		"ms-azuretools.vscode-docker",
+		"ms-kubernetes-tools.vscode-kubernetes-tools",
+		"ms-vscode.powershell",
+		"ms-vscode.vscode-typescript-tslint-plugin",
+		"ms-vscode.csharp",
+		"ms-mssql.mssql",
+		"ms-vsliveshare.vsliveshare",
+		"visualstudioexptteam.vscodeintellicode",
+		"k--kato.docomment",
+		"quicktype.quicktype",
+		"googlecloudtools.cloudcode",
+		"donjayamanne.githistory",
+		"humao.rest-client",		
+		"stansw.vscode-odata",
+		"pflannery.vscode-versionlens",
+		"aaron-bond.better-comments",
+		"EditorConfig.EditorConfig",
+		"mechatroner.rainbow-csv",
+		"redhat.vscode-yaml",		
+		"dotjoshjohnson.xml",
+		"formulahendry.auto-close-tag",
+		"formulahendry.auto-rename-tag",
+		"PKief.material-icon-theme",
+		"jebbs.markdown-extension-pack",
+		"jebbs.markdown-extended",
+		"gweoessner.mdmath",
+		"amoosbr.markdown-imsize",
+		"bierner.emojisense",
+		"telesoho.vscode-markdown-paste-image",
+		"DavidAnson.vscode-markdownlint",
+		"jebbs.plantuml",
+		"jebbs.super-replace",
+		"naumovs.color-highlight",
+		"christian-kohler.path-intellisense",
+		"kirozen.wordcounter"
+	]
+}

@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (web)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet",
+            "args": ["run"],
+            "cwd": "${workspaceFolder}/test/dotnet",
+        },
+        {
+            "name": "PowerShell Launch",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}/test/powershell/hello.ps1",
+            "args": [],
+            "cwd": "${workspaceFolder}/test/powershell"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Typescript Launch",
+            "program": "${workspaceFolder}/test/typescript/out/server.js",
+            "cwd": "${workspaceFolder}/test/typescript",
+            "preLaunchTask": "compile"
+        }
+    ]
+}
